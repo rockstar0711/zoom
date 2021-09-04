@@ -1,3 +1,7 @@
 {
+    "ignore": [
+        "src/public/*",
+        "src/views/*"
+    ],
     "exec": "babel-node src/server.js"
 }
