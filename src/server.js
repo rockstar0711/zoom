@@ -32,8 +32,8 @@ wss.on("connection", (socket) => {
     })
 
     socket.on("message", (msg) => {
-        console.log(msg.toString())
-        sockets.forEach(aSocket => aSocket.send(msg.toString()))
+        console.log(JSON.parse(msg))
+        // sockets.forEach(aSocket => aSocket.send(msg.toString()))
     })
 })
 

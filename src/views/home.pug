@@ -10,8 +10,11 @@ html(lang="en")
         header 
             h1 Noom 
         main 
+            form#nick
+                input(type="text", placeholder="Please type nickname", required)
+                button Save
             ul
-            form
+            form#message
                 input(type="text", placeholder="Write a message", required)
                 button Send
             h2 Welcome to noom
