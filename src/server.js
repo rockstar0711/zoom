@@ -27,13 +27,24 @@ const sockets = [];
 //listen connection
 wss.on("connection", (socket) => {
     sockets.push(socket);
+    socket['nickname'] = 'Anonymos'
     socket.on("close", () => {
         console.log("Disconnected someone.")
     })
 
     socket.on("message", (msg) => {
         console.log(JSON.parse(msg))
-        // sockets.forEach(aSocket => aSocket.send(msg.toString()))
+        let parsedData = JSON.parse(msg);
+        switch (parsedData.type) {
+            case 'new_message':
+                sockets.forEach(aSocket => aSocket.send(`${socket['nickname']}: ${parsedData.payload.toString()}`))
+                break;
+            case 'nickname':
+                socket['nickname'] = parsedData.payload.toString()
+                break;
+            default:
+                break;
+        }
     })
 })
 
